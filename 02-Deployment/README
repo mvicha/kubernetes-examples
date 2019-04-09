@@ -1,3 +1,62 @@
+# Apply deployment
 kubectl apply -f phpapache-deployment.yaml
 
+# Show the deployment
+kubectl get deployments
+kubectl describe deployment phpapache-deployment
 
+# Get pods
+kubectl get pods -o wide
+
+# Get the output of the pods using curl http://ip_address_of_some_pod
+
+# Delete some pod
+kubectl delete pod #podname#
+
+# see how pod gets started again
+kubectl get pods -o wide
+
+# Scale pods, increase the number of running pods to 5
+kubectl scale deployment --replicas=5 phpapache-deployment
+
+# see how number of pods increases
+kubectl get pods -o wide
+
+# Reduce the number of pods to 1
+kubectl scale deployment --replicas=1 phpapache-deployment
+
+# see how pods are terminated
+kubectl get pods -o wide
+
+# Set the number of pods to 3 again
+kubectl scale deployment --replicas=3 phpapache-deployment
+
+# Update image version
+kubectl --record deployments.apps/phpapache-deployment set image deployment.v1.apps/phpapache-deployment phpapache=mvilla/phpapache:v2
+
+# Get pods
+kubectl get pods -o wide
+
+# Get the output of the pods using curl http://ip_address_of_some_pod
+# Check how it displays version 2 now
+
+# Inspect rollout history
+kubectl rollout history deployment phpapache-deployment
+
+# Undo deployment update
+kubectl rollout undo deployment phpapache-deployment
+
+# Get pods
+kubectl get pods -o wide
+
+# Get the output of the pods using curl http://ip_address_of_some_od
+# Check how it displays version 1 now
+
+# Inspect rollout history
+kubectl rollout history deployment phpapache-deployment
+
+# Go back to revision 2
+kubectl rollout undo deployment phpapache-deployment --to-revision=2
+
+# Remove deployment
+kubectl delete deployment phpapache-deployment

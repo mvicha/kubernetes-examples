@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: phpapache-service
+spec:
+  selector:
+    app: phpapache
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 80
+    name: http

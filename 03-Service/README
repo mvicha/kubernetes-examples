@@ -1,0 +1,14 @@
+# Create phpapache-service
+kubectl apply -f phpapache-service.yaml
+
+# Get the services
+kubectl get services -o wide
+
+# Get the output of the pods using curl http://ip_address_of_the_service
+# Do it multiple times to see how it goes to different pods
+
+# Update the service to LoadBalancer
+kubectl patch service phpapache-service -p '{"spec": {"externalIPs": ["192.168.122.254"], "type": "LoadBalancer"}}'
+
+# Go to http://192.168.122.254
+# See the output of the pods
