@@ -1,0 +1,42 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: phpapache-deployment
+  labels:
+    app: phpapache
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: phpapache
+  template:
+    metadata:
+      labels:
+        app: phpapache
+    spec:
+      containers:
+      - name: phpapache
+        image: mvilla/phpapache:v2
+        ports:
+        - name: http
+          containerPort: 80
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1

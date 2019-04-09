@@ -1,0 +1,4 @@
+# Apply ingress rule
+kubectl apply -f phpapache-ingress.yaml
+
+# curl http://kubemaster/phpapache
