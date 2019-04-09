@@ -1,0 +1,38 @@
+# Get list of nodes
+kubectl get nodes
+
+# Set kubenode3 label env=dev
+kubectl label nodes kubenode3 env=dev
+
+# Get list of nodes and its labels
+kubectl get nodes --show-labels
+
+# Get pods
+kubectl get pods -o wide
+
+# Apply phpapache-deployment
+# Set nodeselector env=dev
+kubectl apply -f phpapache-deployment.yaml
+
+# Get pods and see how are taken to node3
+kubectl get pods -o wide
+
+# Shutdown node3
+curl http://192.168.122.254:8080
+
+# Get list of nodes
+kubectl get nodes
+
+# Get pods and see how they are still being assigned to node3
+kubectl get pods -o wide
+
+# Start node3
+curl http://192.168.122.254:8080
+
+# Shutdown node2
+# Check how pods are getting to other nodes
+kubectl get pods -o wide
+curl http://192.168.122.254
+
+# Start node2
+
