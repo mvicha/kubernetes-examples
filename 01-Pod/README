@@ -1,0 +1,7 @@
+cd Docker/v1
+docker image build -t mvilla/phpapache:v1 -f Dockerfile.v1 .
+docker image push mvilla/phpapache:v1
+
+cd Docker/v2
+docker image build -t mvilla/phpapache:v2 -f Dockerfile.v2 .
+docker image push mvilla/phpapache:v2
