@@ -5,3 +5,13 @@ docker image push mvilla/phpapache:v1
 cd Docker/v2
 docker image build -t mvilla/phpapache:v2 -f Dockerfile.v2 .
 docker image push mvilla/phpapache:v2
+
+kubectl apply -f phpapache-pod.yaml
+
+kubectl logs -f phpapache
+
+kubectl get all -o wide
+
+curl that url
+
+kubectl delete pod phpapache
