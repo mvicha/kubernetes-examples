@@ -1,0 +1,22 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: autoscaling-memory-demo-deployment
+  namespace: autoscaling-example
+  labels:
+    app: phpapache
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: autoscaling-memory-demo
+  template:
+    metadata:
+      labels:
+        app: autoscaling-memory-demo
+    spec:
+      containers:
+      - name: autoscaling-memory-demo
+        image: polinux/stress
+        command: ["stress"]
+        args: ["--vm", "1", "--vm-bytes", "250M", "--vm-hang", "1"]

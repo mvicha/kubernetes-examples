@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: phpapache
-        image: mvilla/phpapache:v1
+        image: mvilla/phpapache:v2
         ports:
         - name: http
           containerPort: 80

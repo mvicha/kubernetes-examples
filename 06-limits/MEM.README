@@ -51,3 +51,6 @@ kubectl describe pod memory-demo-3 --namespace=mem-example
 
 # Delete pod
 kubectl delete pod memory-demo-3 --namespace=mem-example
+
+# Delete namespace
+kubectl delete namespace mem-example

@@ -1,0 +1,33 @@
+# Create cpu-example namespace
+kubectl apply -f cpu-example-namespace.yaml
+
+# Create Pod with resource limits
+kubectl apply -f cpu-request-limit.yaml
+
+# Verify that the pod container is running
+kubectl get pod cpu-demo --namespace=cpu-example
+
+# View detailed information about the pod
+kubectl get pod cpu-demo --output=yaml --namespace=cpu-example
+
+# Fetch pod metrics
+kubectl top pod cpu-demo --namespace=cpu-example
+
+# Delete pod
+kubectl delete pod cpu-demo --namespace=cpu-example
+
+# CPU Request Too Big
+# Create the pod
+kubectl apply -f cpu-request-too-big.yaml
+
+# View the pod status
+kubectl get pod cpu-demo-2 --namespace=cpu-example
+
+# View detailed information about the pod
+kubectl describe pod cpu-demo-2 --namespace=cpu-example
+
+# Delete pod
+kubectl delete pod cpu-demo-2 --namespace=cpu-example
+
+# Delete namespace
+kubectl delete namespace cpu-example

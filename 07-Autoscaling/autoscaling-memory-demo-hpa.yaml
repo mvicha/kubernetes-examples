@@ -1,0 +1,13 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: autoscaling-memory-demo-hpa
+  namespace: autoscaling-example
+spec:
+  minReplicas: 2
+  maxReplicas: 5
+  scaleTargetRef:
+    apiVersion: extension/v1beta1
+    kind: Deployment
+    name: autoscaling-memory-demo-deployment
+  targetCPUUtilizationPercentage: 80
